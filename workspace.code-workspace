@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "eureka-service"
+		},
+		{
+			"name": "zuul-server",
+			"path": "zuul-server"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}

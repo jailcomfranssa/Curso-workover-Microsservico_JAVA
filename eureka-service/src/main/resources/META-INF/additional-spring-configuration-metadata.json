@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "eureka.cliente.serviceUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.cliente.serviceUrl.defaultZone'"
+  },
+  {
+    "name": "eureka.cliente.serviceUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.cliente.serviceUrl.defaultZone'"
+  }
+]}
