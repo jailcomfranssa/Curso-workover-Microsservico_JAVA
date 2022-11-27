@@ -6,6 +6,10 @@
 		{
 			"name": "zuul-server",
 			"path": "zuul-server"
+		},
+		{
+			"name": "controler-de-pessoas",
+			"path": "controler-de-pessoas"
 		}
 	],
 	"settings": {
