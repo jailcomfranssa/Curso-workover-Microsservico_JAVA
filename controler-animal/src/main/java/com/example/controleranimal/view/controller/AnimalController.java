@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.controleranimal.compartilhado.AnimalDto;
 
 import com.example.controleranimal.service.AnimalService;
+import com.example.controleranimal.view.model.AnimalModeloAlteracao;
 import com.example.controleranimal.view.model.AnimalModeloInclusao;
 import com.example.controleranimal.view.model.AnimalModeloResponse;
 
@@ -94,7 +98,33 @@ public class AnimalController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<AnimalModeloResponse> atualizar(@PathVariable Integer id, @RequestBody AnimalModeloAlteracao animal){
+        ModelMapper mapper = new ModelMapper();
+        AnimalDto dto = mapper.map(animal, AnimalDto.class);
+        dto = animalService.atualizarAnimal(id, dto);
+
+        return new ResponseEntity<>(mapper.map(dto, AnimalModeloResponse.class), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> removerAnimal(@PathVariable Integer id){
+        animalService.removerAnimal(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Void> definirMoto(@PathVariable Integer id){
+        
+        if(animalService.definirComoMorto(id)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    }
     
     
 }
